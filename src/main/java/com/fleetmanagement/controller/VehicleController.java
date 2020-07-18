@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fleetmanagement.entity.Vehicle;
 import com.fleetmanagement.service.VehicleService;
 
-//@CrossOrigin(origins = "http://mocker.egen.academy")
+@CrossOrigin(origins = "http://mocker.egen.academy")
 @RestController
 public class VehicleController {
 

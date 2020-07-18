@@ -10,14 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.fleetmanagement.entity.Reading;
+import com.fleetmanagement.service.AlertService;
 import com.fleetmanagement.service.ReadingService;
 
-//@CrossOrigin(origins = "http://mocker.egen.academy")
+@CrossOrigin(origins = "http://mocker.egen.academy")
 @RestController
 public class ReadingController {
 
 	@Autowired
 	ReadingService readingService;
+	
+	@Autowired
+	AlertService alertService;
 	
 	@GetMapping("readings")
 	public List<Reading> findReadings(){	
@@ -27,5 +31,7 @@ public class ReadingController {
 	@PostMapping("readings")
 	public void createReadings(@RequestBody Reading reading) {
 		readingService.create(reading);
+		alertService.setAlertFromRule(reading);
+		
 	}
 }
